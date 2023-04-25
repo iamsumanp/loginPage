@@ -4,12 +4,18 @@
   box-sizing: border-box;
 }
 :root {
+  --main-dark: #000000;
   --main-white: #ffffff;
   --main-font-color: #181818;
   --main-login-label-color: #3d3d3d;
   --main-btn: #4d61fc;
-  --secondary-font-color: #4d61fc;
   --account-label-color: #414141;
+  --main-red: #ffc2bd;
+  --main-hover-red: #fa8793;
+  --main-blue: #bdcaff;
+  --main-hover-blue: #8da2fc;
+  --main-light-purple: #c9bdff;
+  --main-horizontal-line: #dadbe3;
 }
 
 body {
@@ -29,82 +35,160 @@ body {
   color: var(--main-white);
 }
 .login-container {
-  width: 80%;
+  width: 70%;
   margin: 0 auto;
   height: 100vh;
   display: flex;
-  position: relative;
-  flex-direction: column;
-  justify-content: flex-start;
 
-  padding: 5% 0 5% 0;
-  /* align-items: center; */
+  flex-direction: row;
+
+  padding: 4% 0 5% 0;
+  flex-wrap: wrap;
 }
 .docsumo-image {
-  /* height: 20px; */
-  width: 180px;
+  height: 23px;
+}
+.login-box-content {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .login-box {
-  /* position: absolute; */
-  /* top: 40%; */
-  margin-top: 5%;
-  align-self: center;
-  width: 35rem;
+  width: 33rem;
   background-color: var(--main-white);
   color: var(--main-font-color);
-  /* left: 50%; */
-  padding: 2.5rem 3rem;
+
+  padding: 3rem 3.5rem;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+}
+.login-label,
+.buttons-container,
+.email-container,
+.optional-or-label,
+.login-btn {
+  margin-bottom: 24px;
+}
+input:focus {
+  outline: thin solid var(--main-dark);
+}
+.optional-or-label {
+  text-align: center;
+  position: relative;
+}
+
+.optional-or-label::before,
+.optional-or-label::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 40%;
+  height: 0.1px;
+  background-color: var(--main-horizontal-line);
+}
+.optional-or-label::before {
+  left: 0;
+}
+
+.optional-or-label::after {
+  right: 0;
+}
+
+.optional-or-label span {
+  position: relative;
+  display: inline-block;
+  padding: 0 10px;
+  background-color: white;
 }
 .login-label {
   font-weight: bold;
   font-size: 1.5rem;
-  /* margin-bottom: 24px; */
 }
 .buttons-container {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  /* flex */
+
   gap: 30px;
 }
 .google-sign-in-button-0auth,
 .microsoft-sign-in-button-0auth {
   width: 100%;
-  /* border: none; */
+  cursor: pointer;
   border-radius: 5px;
-  padding: 15px 19px;
+  padding: 10px 13px;
   background-color: var(--main-white);
   display: flex;
   align-items: center;
   border: solid;
   border-width: 1px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px 0px;
 }
 .google-sign-in-button-0auth {
-  border-color: red;
-  /* border-width: 1px; */
+  border-color: var(--main-red);
+}
+.google-sign-in-button-0auth:hover {
+  border-color: var(--main-hover-red);
 }
 .microsoft-sign-in-button-0auth {
-  border-color: blue;
+  border-color: var(--main-blue);
 }
-.icon {
-  width: 20px;
+.microsoft-sign-in-button-0auth:hover {
+  border-color: var(--main-hover-blue);
 }
-.optional-or-label {
+
+.auth-providers-icon,
+.auth-providers-icon-microsoft {
+  margin-right: 0.3rem;
+}
+
+.auth-providers-icon-microsoft {
+  width: 2.1rem;
+}
+
+.email-container,
+.password-container {
   display: flex;
-  width: 100%;
-  gap: 1rem;
+  flex-direction: column;
 }
-/* .or-label::before, */
-/* .or-label::after {
-  content: " ";
-  height: 2px;
-  width: 130px;
-  background: red;
-  display: block;
-  top: 50%;
-  right: 0;
-} */
+.form-label {
+  margin-bottom: 0.7rem;
+  font-size: 0.9rem;
+}
+.form-input-field {
+  padding: 11px 16px;
+  font-size: 16px;
+  border: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  border-color: var(--main-light-purple);
+}
+
+.forgot-password-span {
+  align-self: flex-end;
+  font-size: 0.9rem;
+  margin: 10px 0 24px 0;
+}
+.login-btn {
+  border: none;
+  padding: 14px 15px;
+  font-size: 16px;
+  background-color: var(--main-btn);
+  color: var(--main-white);
+  border-radius: 5px;
+}
+
+.login-SSO-label,
+.sign-up-label {
+  color: var(--main-btn);
+  font-weight: bold;
+}
+.login-SSO-label {
+  align-self: center;
+  margin-bottom: 0.6rem;
+}
+.no-account-label {
+  align-self: center;
+}
