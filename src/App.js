@@ -1,5 +1,16 @@
+// @ts-check
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React from "react";
+import Login from "./components/Login";
+
 function App() {
-  return <div className="App">Hello tthis is an assignment</div>;
+  return (
+    <Router>
+      <Routes>
+        <Route path="login/" element={<Login />} />
+      </Routes>
+    </Router>
+  );
 }
 
 export default App;
