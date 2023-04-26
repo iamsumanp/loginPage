@@ -32,7 +32,6 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  /* position: relative; */
   color: var(--main-white);
 }
 .login-container {
@@ -154,10 +153,7 @@ input:focus {
   display: flex;
   flex-direction: column;
 }
-.password-container {
-  /* position: relative; */
-  /* width: 100%; */
-}
+
 .form-label {
   margin-bottom: 0.7rem;
   font-size: 0.9rem;
@@ -207,9 +203,6 @@ input:focus {
 }
 .password-control {
   position: relative;
-  /* height: inher; */
-  /* width: 10px; */
-  /* height: 10px; */
 }
 .password-toggle-icon {
   position: absolute;
