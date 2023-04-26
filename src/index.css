@@ -9,6 +9,7 @@
   --main-font-color: #181818;
   --main-login-label-color: #3d3d3d;
   --main-btn: #4d61fc;
+  --main-btn-hover: #3954fa;
   --account-label-color: #414141;
   --main-red: #ffc2bd;
   --main-hover-red: #fa8793;
@@ -26,16 +27,16 @@ body {
 /* login Page */
 
 .bg-container {
-  background-image: url("https://res.cloudinary.com/hire-station/image/upload/v1682419697/docsumo/background.48df26a6085579e09092_s8fhm6.png");
+  background-image: url("https://res.cloudinary.com/hire-station/image/upload/v1682448440/docsumo/new-bg-1_cw64i0.png");
   height: 100vh;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  position: relative;
+  /* position: relative; */
   color: var(--main-white);
 }
 .login-container {
-  width: 70%;
+  width: 75%;
   margin: 0 auto;
   height: 100vh;
   display: flex;
@@ -55,7 +56,7 @@ body {
   align-items: center;
 }
 .login-box {
-  width: 33rem;
+  width: 34rem;
   background-color: var(--main-white);
   color: var(--main-font-color);
 
@@ -153,6 +154,10 @@ input:focus {
   display: flex;
   flex-direction: column;
 }
+.password-container {
+  /* position: relative; */
+  /* width: 100%; */
+}
 .form-label {
   margin-bottom: 0.7rem;
   font-size: 0.9rem;
@@ -164,6 +169,10 @@ input:focus {
   border-width: 1px;
   border-radius: 5px;
   border-color: var(--main-light-purple);
+  width: 100%;
+}
+.form-input-field {
+  z-index: 0;
 }
 
 .forgot-password-span {
@@ -178,6 +187,10 @@ input:focus {
   background-color: var(--main-btn);
   color: var(--main-white);
   border-radius: 5px;
+  cursor: pointer;
+}
+.login-btn:hover {
+  background-color: var(--main-btn-hover);
 }
 
 .login-SSO-label,
@@ -191,4 +204,20 @@ input:focus {
 }
 .no-account-label {
   align-self: center;
+}
+.password-control {
+  position: relative;
+  /* height: inher; */
+  /* width: 10px; */
+  /* height: 10px; */
+}
+.password-toggle-icon {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+
+  z-index: 10;
+  cursor: pointer;
+
+  /* position: absolute; */
 }

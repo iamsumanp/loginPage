@@ -1,11 +1,23 @@
 // //@ts-check
 import React, { useEffect, useRef, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
+
+import usePwToggle from "../hooks/usePwToggle";
+
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const emailRef = useRef(null);
+  const [InputType, Icon, toggleVisiblity] = usePwToggle();
+
+  const handleProvidersSignUp = (e) => {
+    e.preventDefault();
+  };
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+  };
 
   useEffect(() => {
     if (emailRef.current !== null) emailRef.current.focus();
@@ -23,11 +35,17 @@ function Login() {
           <form className="login-box">
             <span className="login-label">Login to your Docsumo account</span>
             <div className="buttons-container">
-              <button className="google-sign-in-button-0auth">
+              <button
+                className="google-sign-in-button-0auth"
+                onClick={handleProvidersSignUp}
+              >
                 <FcGoogle size={30} className="auth-providers-icon" />
                 <span>Sign in with Google</span>
               </button>
-              <button className="microsoft-sign-in-button-0auth">
+              <button
+                className="microsoft-sign-in-button-0auth"
+                onClick={handleProvidersSignUp}
+              >
                 <img
                   src="https://res.cloudinary.com/hire-station/image/upload/v1682423554/docsumo/microsoft-fotor-bg-remover-20230425173714_v1hpq9.png"
                   alt="microsoft"
@@ -56,17 +74,35 @@ function Login() {
               <label htmlFor="email" className="form-label">
                 Password
               </label>
-              <input
-                name="password"
-                type="password"
-                value={password}
-                className="form-input-field"
-                onChange={(e) => setPassword(e.target.value)}
-              />
+              <div className="password-control">
+                <input
+                  name="password"
+                  type={InputType}
+                  // type="password"
+                  value={password}
+                  className="form-input-field"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <span
+                  className="password-toggle-icon"
+                  style={{ color: "#000" }}
+                  onClick={toggleVisiblity}
+                >
+                  {Icon}
+                  {/* Hello efef wwd */}
+                </span>
+              </div>
             </div>
             <p className="forgot-password-span">Forgot Password?</p>
-
-            <button className="login-btn">Login</button>
+            {/* <UsePasswordToggle /> */}
+            {/* <UsePasswordToggle /> */}
+            {/* <usePwToggle /> */}
+            {/* <FontAwesomeIcon icon={"eye"} />
+            <AiOutlineEye /> */}
+            {/* <span>{Icon}</span> */}
+            <button className="login-btn" onClick={handleLogin}>
+              Login
+            </button>
             <p className="login-SSO-label">Login with SSO</p>
             <p className="no-account-label">
               Don't have an account?{" "}
