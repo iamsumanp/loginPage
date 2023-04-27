@@ -1,3 +1,5 @@
+// @ts-check
+
 import {
   FETCH_LOGIN_REQUEST,
   FETCH_LOGIN_SUCCESS,
@@ -5,6 +7,7 @@ import {
   FETCH_USER_LOGIN_ERROR,
   FETCH_USER_REQUEST,
   GET_LOGIN_DETAILS,
+  SAVE_RESPONSE_COOKIE,
 } from "../constants/constants";
 
 const initialState = {
@@ -14,6 +17,8 @@ const initialState = {
   loading: false,
   token: "",
   testUser: {},
+  jsondata: {},
+  responseCookie: "",
 };
 
 export const userReducer = (state = initialState, action) => {
@@ -38,12 +43,21 @@ export const userReducer = (state = initialState, action) => {
         testUser: action.payload,
         user: action.payload, //? might be action.payload.user
         // loading: false,
+        // responseCookie: action.payload,
       };
+
+    case SAVE_RESPONSE_COOKIE:
+      return {
+        ...state,
+        responseCookie: action.payload,
+      };
+
     case GET_LOGIN_DETAILS:
       return {
         ...state,
         loading: false,
-        user: action.payload,
+        // user: action.payload,
+        jsondata: action.payload,
       };
 
     case FETCH_USER_LOGIN_ERROR:
