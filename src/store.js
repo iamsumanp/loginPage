@@ -1,7 +1,7 @@
 import {
   applyMiddleware,
   combineReducers,
-  configureStore,
+  // configureStore,  //? use this
   createStore,
 } from "@reduxjs/toolkit";
 import thunk from "redux-thunk";

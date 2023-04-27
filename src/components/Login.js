@@ -5,14 +5,17 @@ import { FcGoogle } from "react-icons/fc";
 import usePwToggle from "../hooks/usePwToggle";
 import { login } from "../redux/user/userActions";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-
-  const { testUser } = useSelector((state) => state.userAuth);
+  const navigate = useNavigate();
+  const {
+    isAuthenticated,
+    // user
+  } = useSelector((state) => state.userAuth);
 
   const emailRef = useRef(null);
   const [InputType, Icon, toggleVisiblity] = usePwToggle();
@@ -25,25 +28,15 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     dispatch(login(email, password));
-
-    // const config = {
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // };
-    // await axios
-    //   .post(
-    //     "https://apptesting.docsumo.com/api/v1/eevee/validate/login/?type=email",
-    //     { email, password },
-    //     config
-    //   )
-    //   .then((response) => response.data)
-    //   .then((data) => console.log(data, email, password));
   };
 
   useEffect(() => {
     if (emailRef.current !== null) emailRef.current.focus();
-  }, []);
+
+    if (isAuthenticated) {
+      navigate("/dashboard/");
+    }
+  }, [navigate, isAuthenticated]);
   return (
     <div className="bg-container">
       <div className="login-container">
