@@ -1,23 +1,11 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
-import { Route, Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
-const ProtectedRoute = ({ component: Component, ...rest }) => {
+const ProtectedRoute = ({ children }) => {
   const { user } = useSelector((state) => state.userAuth);
-  return (
-    <Fragment>
-      <Route
-        {...rest}
-        render={(props) => {
-          return user ? (
-            <Component {...props} />
-          ) : (
-            <Navigate replace to="login/" />
-          );
-        }}
-      />
-    </Fragment>
-  );
+
+  return user ? children : <Navigate to="/login" />;
 };
 
 export default ProtectedRoute;

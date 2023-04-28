@@ -10,14 +10,10 @@ import {
 } from "../constants/constants";
 
 const initialState = {
-  authStatus: {},
-  user: {},
+  user: null,
   error: "hello",
   isAuthenticated: false,
   loading: false,
-  token: "",
-  jsondata: {},
-  responseCookie: null,
 };
 
 export const userReducer = (state = initialState, action) => {
