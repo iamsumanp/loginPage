@@ -16,6 +16,7 @@ function Login() {
 
   const [emailBorderColor, setEmailBorderColor] = useState("");
   const [passwordBorderColor, setPasswordBorderColor] = useState("");
+
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   const dispatch = useDispatch();
@@ -30,7 +31,6 @@ function Login() {
 
   const handleProvidersSignUp = async (e) => {
     e.preventDefault();
-    // console.log(testUser);
   };
 
   const handleLogin = async (e) => {
@@ -53,10 +53,8 @@ function Login() {
       setPasswordBorderColor("");
     }
 
-    if (email && password) {
-      if (emailRegex.test(email)) {
-        dispatch(login(email, password));
-      }
+    if (email && password && emailRegex.test(email)) {
+      dispatch(login(email, password));
     }
   };
 
@@ -152,7 +150,7 @@ function Login() {
             <button
               onClick={handleLogin}
               className="submit-btn"
-              disabled={loading} // ? works
+              disabled={loading}
               type="submit"
             >
               {loading ? <Loader className="spinner" /> : "Login"}
