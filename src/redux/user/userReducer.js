@@ -11,7 +11,7 @@ import {
 
 const initialState = {
   user: null,
-  error: "hello",
+  error: null,
   isAuthenticated: false,
   loading: false,
 };
@@ -29,6 +29,7 @@ export const userReducer = (state = initialState, action) => {
       return {
         ...state,
         isAuthenticated: false,
+        loading: true,
       };
 
     case FETCH_LOGIN_SUCCESS:
@@ -36,6 +37,7 @@ export const userReducer = (state = initialState, action) => {
         ...state,
         isAuthenticated: true,
         authStatus: action.payload, //? might be action.payload.user
+        loading: false,
       };
 
     case GET_LOGIN_DETAILS:

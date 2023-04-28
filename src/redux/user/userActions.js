@@ -43,6 +43,10 @@ export const login = (email, password) => async (dispatch) => {
 
     dispatch({ type: GET_LOGIN_DETAILS, payload: authData.data.user });
   } catch (error) {
-    dispatch({ type: FETCH_USER_LOGIN_ERROR, payload: error });
+    dispatch({
+      type: FETCH_USER_LOGIN_ERROR,
+      payload: error.response.data.message,
+    });
+    console.log("loginerror", error.response.data.message);
   }
 };

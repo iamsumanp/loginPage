@@ -6,16 +6,24 @@ import usePwToggle from "../hooks/usePwToggle";
 import { login } from "../redux/user/userActions";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { Loader } from "./Button/Loader";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+
+  const [emailBorderColor, setEmailBorderColor] = useState("");
+  const [passwordBorderColor, setPasswordBorderColor] = useState("");
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const {
-    isAuthenticated,
-    // user
-  } = useSelector((state) => state.userAuth);
+
+  const { isAuthenticated, loading, error } = useSelector(
+    (state) => state.userAuth
+  );
 
   const emailRef = useRef(null);
   const [InputType, Icon, toggleVisiblity] = usePwToggle();
@@ -27,7 +35,29 @@ function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    dispatch(login(email, password));
+    if (!email) {
+      setEmailError("Please enter a valid email address");
+      setEmailBorderColor("red");
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      setEmailError("Please enter a valid email address");
+      setEmailBorderColor("red");
+    } else {
+      setEmailError("");
+      setEmailBorderColor("");
+    }
+    if (!password) {
+      setPasswordError("Please enter a password");
+      setPasswordBorderColor("red");
+    } else {
+      setPasswordError("");
+      setPasswordBorderColor("");
+    }
+
+    if (email && password) {
+      if (emailRegex.test(email)) {
+        dispatch(login(email, password));
+      }
+    }
   };
 
   useEffect(() => {
@@ -49,6 +79,7 @@ function Login() {
         <div className="login-box-content">
           <form className="login-box">
             <span className="login-label">Login to your Docsumo account</span>
+            {error && <div className="error-container">{error}</div>}
             <div className="buttons-container">
               <button
                 className="google-sign-in-button-0auth"
@@ -82,8 +113,13 @@ function Login() {
                 value={email}
                 className="form-input-field"
                 ref={emailRef}
+                placeholder="janedoe@abc.com"
                 onChange={(e) => setEmail(e.target.value)}
+                style={{ borderColor: emailBorderColor }}
               />
+              {emailError && (
+                <div className="input-form-error">{emailError}</div>
+              )}
             </div>
             <div className="password-container">
               <label htmlFor="email" className="form-label">
@@ -93,9 +129,10 @@ function Login() {
                 <input
                   name="password"
                   type={InputType}
-                  // type="password"
+                  placeholder="Enter passwords here"
                   value={password}
                   className="form-input-field"
+                  style={{ borderColor: passwordBorderColor }}
                   onChange={(e) => setPassword(e.target.value)}
                 />
                 <span
@@ -104,19 +141,21 @@ function Login() {
                   onClick={toggleVisiblity}
                 >
                   {Icon}
-                  {/* Hello efef wwd */}
                 </span>
               </div>
+              {passwordError && (
+                <div className="input-form-error">{passwordError}</div>
+              )}
             </div>
             <p className="forgot-password-span">Forgot Password?</p>
-            {/* <UsePasswordToggle /> */}
-            {/* <UsePasswordToggle /> */}
-            {/* <usePwToggle /> */}
-            {/* <FontAwesomeIcon icon={"eye"} />
-            <AiOutlineEye /> */}
-            {/* <span>{Icon}</span> */}
-            <button className="login-btn" onClick={handleLogin}>
-              Login
+
+            <button
+              onClick={handleLogin}
+              className="submit-btn"
+              disabled={loading} // ? works
+              type="submit"
+            >
+              {loading ? <Loader className="spinner" /> : "Login"}
             </button>
             <p className="login-SSO-label">Login with SSO</p>
             <p className="no-account-label">
